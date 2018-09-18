@@ -15,7 +15,7 @@
 	<span id="dummy"></span>
 <div class="container c">
 			<div class="stopwatch">
-  				<div class="time row justify-content-center">00:00:00</div>
+  				<div class="time row justify-content-center">00:00</div>
   				<div class="row justify-content-center ">
 	  				<button class="start nonc">Start</button>
 	  				<button class="pause nonc">Pause</button>
@@ -151,7 +151,7 @@ function getDisplay() {
 	  .padStart(2, "0");
 	s = s % 60; // Purge extracted
 
-	SETTINGS.currentTime = `${formatTime(m)}:${formatTime(s)}:${formatTime(ms)}`;
+	SETTINGS.currentTime = `${formatTime(m)}:${formatTime(s)}`;
 	return SETTINGS.currentTime;
 }
 

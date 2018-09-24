@@ -13,40 +13,61 @@
 </head>
 <body>
 	<span id="dummy"></span>
-<div class="container c">
-			<div class="stopwatch">
-  				<div class="time row justify-content-center">00:00</div>
-  				<div class="row justify-content-center ">
-	  				<button class="start nonc">Start</button>
-	  				<button class="pause nonc">Pause</button>
-	 				<button class="reset nonc">Reset</button>
-  				</div>
+<div class="container-fluid c">
+		<div class="timeC">
+			<div class="row justify-content-center ">
+  				<button class="nonc" onclick="plays(2);">2 MIN</button>
+  				<button class="nonc" onclick="plays(1.5);">1.5 MIN</button>
+ 				<button class="nonc" onclick="plays(1);">1 Min</button>
 			</div>
-		<div class="row s">
-			<div class="col-6 b">
-				<div class="row">
-					<div class="col-4">
-						<input type="button" class="nonc redb" onclick="dec1_Red();" value="-1"onmousedown="bleep.play()">
-						<input type="button" class="nonc redb" onclick="inc1_Red();" value="+1" onmousedown="bleep.play()">
-						<input type="button" class="nonc redb" onclick="inc2_Red();" value="+2" onmousedown="bleep.play()">
-						<input type="button" class="nonc redb" onclick="inc3_Red();" value="+3" onmousedown="bleep.play()">
+		</div>
+		<div class="stopwatch">
+			<div class="time row justify-content-center">00:00</div>
+			<div class="row justify-content-center ">
+  				<button class="start nonc">Start</button>
+  				<button class="pause nonc">Pause</button>
+ 				<button class="reset nonc">Reset</button>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="b col-6">
+					<div class="row ">
+						<div class="col">
+							<input type="button"class="nonc redb row" onclick="gamJeomChung();" value="Gam Jeom"onmousedown="bleep.play()">
+							<input type="button" class="nonc redb row" onclick="dec1_Red();" value="-1"onmousedown="bleep.play()">
+							<input type="button" class="nonc redb row" onclick="inc1_Red();" value="+1" onmousedown="bleep.play()">
+							<input type="button" class="nonc redb row" onclick="inc2_Red();" value="+2" onmousedown="bleep.play()">
+							<input type="button" class="nonc redb row" onclick="inc3_Red();" value="+3" onmousedown="bleep.play()">
+						</div>
+						<div class="col">
+							<div class="Score col" id="Score1">0</div>
+						</div>
 					</div>
-					<div class="col-8">
-						<div class="Score col" id="Score1">0</div>
+				</div>
+				<div class="r col-6">
+					<div class="row justify-content-end">
+						<div class="col">
+							<div class="Score col" id="Score2">0</div>
+						</div>
+						<div class="col-4">
+							<input type="button" class="nonc blueb row" onclick="gamJeomHung();" value="Gam Jeom" onmousedown="bleep.play()">
+							<input type="button" class="nonc blueb row" onclick="dec1_Blue();" value="-1" onmousedown="bleep.play()">
+							<input type="button" class="nonc blueb row" onclick="inc1_Blue();" value="+1" onmousedown="bleep.play()">
+							<input type="button" class="nonc blueb row" onclick="inc2_Blue();" value="+2" onmousedown="bleep.play()">
+							<input type="button" class="nonc blueb row" onclick="inc3_Blue();" value="+3" onmousedown="bleep.play()">
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-6  r">
-				<div class="row">
-					<div class="col-8">
-						<div class="Score col" id="Score2">0</div>
-					</div>
-					<div class="col-4">
-						<input type="button" class="nonc blueb" onclick="dec1_Blue();" value="-1" onmousedown="bleep.play()">
-						<input type="button" class="nonc blueb" onclick="inc1_Blue();" value="+1" onmousedown="bleep.play()">
-						<input type="button" class="nonc blueb" onclick="inc2_Blue();" value="+2" onmousedown="bleep.play()">
-						<input type="button" class="nonc blueb" onclick="inc3_Blue();" value="+3" onmousedown="bleep.play()">
-					</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row justify-content-between">
+				<div class="row" id="chung">
+
+				</div>
+				<div class="row" id="hung">
+
 				</div>
 			</div>
 		</div>
@@ -54,6 +75,8 @@
 
 </body>
 <script>
+var c = 0;
+var h = 0;
 var score1 = 0;
 var score2 = 0;
 // RED
@@ -83,12 +106,49 @@ function inc3_Blue() {
 	score2= score2+3;
 	Score2.innerHTML = score2;}
 
+function gamJeomChung() {
+	c++;
+	if( c<=10 ){
+		var node = document.createElement("div");
+		node.className = 'Gam';
+		document.getElementById("chung").appendChild(node);
+		score2 = score2+1;
+		Score2.innerHTML = score2;
+	} else {
+		// pauseTimer();
+	}
+	
+}
+function gamJeomHung() {
+	h++;
+	if(h<=10){
+		var node = document.createElement("div");
+		node.className = 'Gam';
+		document.getElementById("hung").appendChild(node);
+		score1 = score1+1;
+		Score1.innerHTML = score1;
+	} else {
+		// pauseTimer();
+	}
+
+}
+
 const BTN_START = document.querySelector(".start");
 const BTN_PAUSE = document.querySelector(".pause");
 const BTN_RESET = document.querySelector(".reset");
 const TIME_DISPLAY = document.querySelector(".time");
 
-let ms, s, m;
+let  s, m;
+const SETTINGS = {
+	start: 0,
+	progress: 0,
+	currentTime: "",
+	playing: false,
+	timerId: null,
+	get milliseconds() {
+	  return Math.trunc(this.progress);
+	}
+};
 
 BTN_START.addEventListener("click", e => {
 	e.preventDefault();
@@ -105,16 +165,7 @@ BTN_START.addEventListener("click", e => {
 BTN_PAUSE.addEventListener("click", pauseTimer);
 BTN_RESET.addEventListener("click", resetTimer);
 
-const SETTINGS = {
-	start: 0,
-	progress: 0,
-	currentTime: "",
-	playing: false,
-	timerId: null,
-	get milliseconds() {
-	  return Math.trunc(this.progress);
-	}
-};
+
 
 function startTimer(timestamp) {
 	if (!SETTINGS.start)
@@ -133,7 +184,7 @@ function resetTimer() {
 // Increment SETTINGS.start with new delay time
 	SETTINGS.start += SETTINGS.progress;
 	SETTINGS.progress = 0.01;
-	TIME_DISPLAY.textContent = "00:00:00";
+	TIME_DISPLAY.textContent = "00:00";
 	score1 = 0;
 	score2 = 0;
 	Score1.innerHTML = score1;
@@ -141,7 +192,7 @@ function resetTimer() {
 }
 
 function getDisplay() {
-	ms = Math.trunc((SETTINGS.milliseconds / 10) % 100);
+
 	s = Math.trunc(SETTINGS.milliseconds / 1000)
 	  .toString()
 	  .padStart(2, "0");
@@ -152,13 +203,18 @@ function getDisplay() {
 	s = s % 60; // Purge extracted
 
 	SETTINGS.currentTime = `${formatTime(m)}:${formatTime(s)}`;
+
 	return SETTINGS.currentTime;
 }
 
-function formatTime(time) {
-	return time.toString().padStart(2, "0");
+function formatTime(time) {return time.toString().padStart(2, "0");}
+
+function plays(t){
+	document.querySelector(".stopwatch").style.display = "block";
+	document.querySelector(".timeC").style.display = "none";
+	return t;
 }
 
-
 </script>
+
 </html>

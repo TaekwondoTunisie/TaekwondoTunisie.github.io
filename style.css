@@ -1,29 +1,18 @@
-
-* {
-  box-sizing: border-box;
-}
-
 body,
 html {
   height: 100%;
   padding: 0;
   margin: 0;
 }
-
-.c {
-  font-size: 100%;
-  font-family: "Share Tech Mono", monospace;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background: linear-gradient(45deg, #0f1630 0%, #350d29 100%);
-  opacity: 0.8;
-}
 body{
 	background-position: center;
 	background-image: url("bg.jpg");
 	background-size: cover;
-	height: 100%;
+}
+.c {
+  font-family: "Share Tech Mono", monospace;
+  background: linear-gradient(45deg, #0f1630 0%, #350d29 100%);
+  opacity: 0.8;
 }
 .time {
 	font-size: 5em;
@@ -33,7 +22,11 @@ body{
 .stopwatch {
 	text-align: center;
 	padding: 2rem;
-
+	display: none;
+}
+.timeC {
+	text-align: center;
+	padding: 2rem;
 }
 button{
 	border: 1px solid cyan;
@@ -44,7 +37,6 @@ button{
 	transition: all 0.3s;
 
 }
-
 .nonc {
   margin: 0 0.5em;
   font-size: 1.5em;
@@ -52,27 +44,23 @@ button{
 button:hover {
 	background: rgba(0, 128, 128, 0.5);
 }
-
 .b {
 	background-color: blue;
 	border-radius: 10px 0px 0px 10px;
 }
 .r{
 	background-color: red;
-
 	border-radius: 0px 10px 10px 0px;
 }
 .redb{
 	background-color: red;
 	margin-top:10px;
-	width:100px;
 	border-radius: 10px;
 	padding: 0.25em 0.75em;
 	color: blue
 }
 .blueb{
 	background-color: blue;
-	width:100px;
 	margin-top:10px;
 	border-radius: 10px;
 	padding: 0.25em 0.75em;
@@ -80,10 +68,15 @@ button:hover {
 }
 .Score {
 	color:white;
-	font-size: 150px;
+	font-size: 10em;
 	text-align: center;
 	margin-top: 20px; 
 }
-.s{
-	padding-bottom: 10px;
+.Gam{
+	width: 30px;
+	height: 30px;
+	border: solid black 5px;
+	border-radius: 20px;
+	background-color: red;
+	margin: 5px;
 }

@@ -189,41 +189,58 @@ function gamJeomHung() {
 	}
 
 }
-//keybord red
-var redgamX = document.getElementById("redgam");
-var red_1X = document.getElementById("red_1");
-var red1X = document.getElementById("red1");
-var red2X = document.getElementById("red2");
-var red3X = document.getElementById("red3");
 
-redgamX.addEventListener("keydown", function(event) {
-  if (event.keyCode == 82) {
+document.addEventListener("keydown", function(event) {
+	//keybord red
+  if (event.keyCode === 82) {
   	gamJeomChung();
+  	bleep.play()
   }
-});
-
-red_1X.addEventListener("keydown", function(event) {
   if (event.keyCode === 52) {
   	dec1_Red();
+  	bleep.play()
   }
-});
-
-red1X.addEventListener("keydown", function(event) {
   if (event.keyCode === 49) {
   	inc1_Red();
+  	bleep.play()
   }
-});
-
-red2X.addEventListener("keydown", function(event) {
   if (event.keyCode === 50) {
   	inc2_Red();
+  	bleep.play()
   }
-});
-
-red3X.addEventListener("keydown", function(event) {
   if (event.keyCode === 51) {
   	inc3_Red();
+  	bleep.play()
   }
+	//keybord blue
+  if (event.keyCode === 66) {
+  	gamJeomHung();
+  	bleep.play()
+  }
+  if (event.keyCode === 100) {
+  	dec1_Blue();
+  	bleep.play()
+  }
+  if (event.keyCode === 97) {
+  	inc1_Blue();
+  	bleep.play()
+  }
+  if (event.keyCode === 98) {
+  	inc2_Blue();
+  	bleep.play()
+  }
+  if (event.keyCode === 99) {
+  	inc3_Blue();
+  	bleep.play()
+  }  
+  if (event.keyCode === 32) {
+  	pauseTimer();
+  	bleep.play()
+  }  
+  if (event.keyCode === 13) {
+  	startTimer();
+  	bleep.play()
+  }  
 });
 
 const BTN_START = document.querySelector(".start");

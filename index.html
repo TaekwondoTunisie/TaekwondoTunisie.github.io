@@ -34,11 +34,41 @@
 				<div class="b col-6">
 					<div class="row ">
 						<div class="col">
-							<input type="button"class="nonc redb row" onclick="gamJeomChung();" value="Gam Jeom"onmousedown="bleep.play()">
-							<input type="button" class="nonc redb row" onclick="dec1_Red();" value="-1"onmousedown="bleep.play()">
-							<input type="button" class="nonc redb row" onclick="inc1_Red();" value="+1" onmousedown="bleep.play()">
-							<input type="button" class="nonc redb row" onclick="inc2_Red();" value="+2" onmousedown="bleep.play()">
-							<input type="button" class="nonc redb row" onclick="inc3_Red();" value="+3" onmousedown="bleep.play()">
+							<input 
+								type="button"
+								id="redgam"
+								class="nonc redb row" 
+								onclick="gamJeomChung();" 
+								value="Gam Jeom"
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="red_1" 
+								class="nonc redb row" 
+								onclick="dec1_Red();" 
+								value="-1"
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="red1" 
+								class="nonc redb row" 
+								onclick="inc1_Red();" 
+								value="+1" 
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="red2" 
+								class="nonc redb row" 
+								onclick="inc2_Red();" 
+								value="+2" 
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="red3" 
+								class="nonc redb row" 
+								onclick="inc3_Red();" 
+								value="+3" 
+								onmousedown="bleep.play()">
 						</div>
 						<div class="col">
 							<div class="Score col" id="Score1">0</div>
@@ -51,11 +81,41 @@
 							<div class="Score col" id="Score2">0</div>
 						</div>
 						<div class="col-4">
-							<input type="button" class="nonc blueb row" onclick="gamJeomHung();" value="Gam Jeom" onmousedown="bleep.play()">
-							<input type="button" class="nonc blueb row" onclick="dec1_Blue();" value="-1" onmousedown="bleep.play()">
-							<input type="button" class="nonc blueb row" onclick="inc1_Blue();" value="+1" onmousedown="bleep.play()">
-							<input type="button" class="nonc blueb row" onclick="inc2_Blue();" value="+2" onmousedown="bleep.play()">
-							<input type="button" class="nonc blueb row" onclick="inc3_Blue();" value="+3" onmousedown="bleep.play()">
+							<input
+								type="button"
+								id="bluegam" 
+								class="nonc blueb row" 
+								onclick="gamJeomHung();" 
+								value="Gam Jeom" 
+								onmousedown="bleep.play()">
+							<input
+								type="button"
+								id="blue_1" 
+								class="nonc blueb row" 
+								onclick="dec1_Blue();" 
+								value="-1" 
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="blue1" 
+								class="nonc blueb row" 
+								onclick="inc1_Blue();" 
+								value="+1" 
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="blue2" 
+								class="nonc blueb row" 
+								onclick="inc2_Blue();" 
+								value="+2" 
+								onmousedown="bleep.play()">
+							<input 
+								type="button" 
+								id="blue3" 
+								class="nonc blueb row" 
+								onclick="inc3_Blue();" 
+								value="+3" 
+								onmousedown="bleep.play()">
 						</div>
 					</div>
 				</div>
@@ -82,7 +142,8 @@ var score2 = 0;
 // RED
 function dec1_Red() {
 	score1= score1-1;
-	Score1.innerHTML = score1;}
+	Score1.innerHTML = score1;
+}
 function inc1_Red() {
 	score1= score1+1;
 	Score1.innerHTML = score1;}
@@ -114,8 +175,6 @@ function gamJeomChung() {
 		document.getElementById("chung").appendChild(node);
 		score2 = score2+1;
 		Score2.innerHTML = score2;
-	} else {
-		// pauseTimer();
 	}
 	
 }
@@ -127,11 +186,45 @@ function gamJeomHung() {
 		document.getElementById("hung").appendChild(node);
 		score1 = score1+1;
 		Score1.innerHTML = score1;
-	} else {
-		// pauseTimer();
 	}
 
 }
+//keybord red
+var redgamX = document.getElementById("redgam");
+var red_1X = document.getElementById("red_1");
+var red1X = document.getElementById("red1");
+var red2X = document.getElementById("red2");
+var red3X = document.getElementById("red3");
+
+redgamX.addEventListener("keydown", function(event) {
+  if (event.keyCode == 82) {
+  	gamJeomChung();
+  }
+});
+
+red_1X.addEventListener("keydown", function(event) {
+  if (event.keyCode === 52) {
+  	dec1_Red();
+  }
+});
+
+red1X.addEventListener("keydown", function(event) {
+  if (event.keyCode === 49) {
+  	inc1_Red();
+  }
+});
+
+red2X.addEventListener("keydown", function(event) {
+  if (event.keyCode === 50) {
+  	inc2_Red();
+  }
+});
+
+red3X.addEventListener("keydown", function(event) {
+  if (event.keyCode === 51) {
+  	inc3_Red();
+  }
+});
 
 const BTN_START = document.querySelector(".start");
 const BTN_PAUSE = document.querySelector(".pause");

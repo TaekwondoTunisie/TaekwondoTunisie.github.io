@@ -16,9 +16,9 @@
 <div class="container-fluid c">
 		<div class="timeC">
 			<div class="row justify-content-center ">
-  				<button class="nonc" onclick="plays(2);">2 MIN</button>
-  				<button class="nonc" onclick="plays(1.5);">1.5 MIN</button>
- 				<button class="nonc" onclick="plays(1);">1 Min</button>
+  				<button class="nonc" id="cut3" >2 MIN</button>
+  				<button class="nonc" id="cut2" >1.5 MIN</button>
+ 				<button class="nonc" id="cut1" >1 Min</button>
 			</div>
 		</div>
 		<div class="stopwatch">
@@ -139,6 +139,7 @@ var c = 0;
 var h = 0;
 var score1 = 0;
 var score2 = 0;
+var cut = 0;
 // RED
 function dec1_Red() {
 	score1= score1-1;
@@ -247,10 +248,14 @@ const BTN_START = document.querySelector(".start");
 const BTN_PAUSE = document.querySelector(".pause");
 const BTN_RESET = document.querySelector(".reset");
 const TIME_DISPLAY = document.querySelector(".time");
+const min3 = document.getElementById("cut3");
+const min2 = document.getElementById("cut2");
+const min1 = document.getElementById("cut1");
 
 let  s, m;
 const SETTINGS = {
 	start: 0,
+	cut:0,
 	progress: 0,
 	currentTime: "",
 	playing: false,
@@ -259,6 +264,24 @@ const SETTINGS = {
 	  return Math.trunc(this.progress);
 	}
 };
+min3.addEventListener("click", e => {
+	e.preventDefault();
+	SETTINGS.cut = 3;
+	document.querySelector(".stopwatch").style.display = "block";
+	document.querySelector(".timeC").style.display = "none";
+});
+min2.addEventListener("click", e => {
+	e.preventDefault();
+	SETTINGS.cut = 2;
+	document.querySelector(".stopwatch").style.display = "block";
+	document.querySelector(".timeC").style.display = "none";
+});
+min1.addEventListener("click", e => {
+	e.preventDefault();
+	SETTINGS.cut = 1;
+	document.querySelector(".stopwatch").style.display = "block";
+	document.querySelector(".timeC").style.display = "none";
+});
 
 BTN_START.addEventListener("click", e => {
 	e.preventDefault();
@@ -313,17 +336,22 @@ function getDisplay() {
 	s = s % 60; // Purge extracted
 
 	SETTINGS.currentTime = `${formatTime(m)}:${formatTime(s)}`;
-
+	if(SETTINGS.currentTime=='02:00' && SETTINGS.cut == 3){
+		pauseTimer()
+	}	
+	if(SETTINGS.currentTime=='01:30' && SETTINGS.cut == 2){
+		pauseTimer()
+	}	
+	if(SETTINGS.currentTime=='01:00' && SETTINGS.cut == 1){
+		pauseTimer()
+	}
 	return SETTINGS.currentTime;
 }
 
 function formatTime(time) {return time.toString().padStart(2, "0");}
 
-function plays(t){
-	document.querySelector(".stopwatch").style.display = "block";
-	document.querySelector(".timeC").style.display = "none";
-	return t;
-}
+
+
 
 </script>
 
